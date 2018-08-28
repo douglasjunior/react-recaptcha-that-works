@@ -1,6 +1,6 @@
 {
   "name": "react-recaptcha-that-works",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Recaptcha library for React that works.",
   "main": "build/index.js",
   "scripts": {
@@ -28,9 +28,6 @@
     "url": "https://github.com/douglasjunior/react-recaptcha-that-works/issues"
   },
   "homepage": "https://github.com/douglasjunior/react-recaptcha-that-works",
-  "peerDependencies": {
-    "react": ">=15"
-  },
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
