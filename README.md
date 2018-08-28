@@ -1,2 +1,2 @@
-# react-recaptcha-that-works
+# Recaptcha for React
 A Recaptcha library for React that works.
