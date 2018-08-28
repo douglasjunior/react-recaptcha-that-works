@@ -61,7 +61,6 @@ class App extends Component {
                 <input type="text" placeholder="Username" />
                 <input type="password" placeholder="Password" />
                 <Recaptcha
-                    ref={ref = this.recaptcha = ref}
                     siteKey="<your-recaptcha-public-key>"
                     onVerify={this.onVerify}
                     onExpire={this.onExpire}
