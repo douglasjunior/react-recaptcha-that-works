@@ -1,0 +1,85 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+        "airbnb"
+    ],
+    "globals": {
+        "document": false,
+        "window": false
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "arrow-parens": [
+            "warn",
+            "as-needed"
+        ],
+        "max-len": [
+            "warn",
+            120
+        ],
+        "padded-blocks": [
+            "error",
+            {
+                "classes": "always"
+            }
+        ],
+        "global-require": "off",
+        "arrow-body-style": "off",
+        "no-underscore-dangle": "off",
+        "no-nested-ternary": "off",
+        "import/no-useless-path-segments": "off",
+        "operator-linebreak": "warn",
+        "no-unused-vars": [
+            "error",
+            {
+                "args": "none"
+            }
+        ],
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn"
+                ]
+            }
+        ],
+        "react/destructuring-assignment": "off",
+        "react/forbid-foreign-prop-types": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/no-multi-comp": "off",
+        "react/require-default-props": "warn",
+        "react/prop-types": "warn",
+        "react/no-string-refs": "warn",
+        "react/jsx-filename-extension": [
+            "error",
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "react/no-unused-state": "warn",
+        "jsx-a11y/anchor-is-valid": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/label-has-for": "off"
+    }
+}
