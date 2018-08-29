@@ -124,6 +124,7 @@ class App extends Component {
 |onVerify|||A callback function, executed when the user submits a successful response. The recaptcha response token is passed to your callback.|
 |onExpire|||A callback function, executed when the reCAPTCHA response expires and the user needs to re-verify.|
 |onError|||A callback function, executed when reCAPTCHA encounters an error (usually network connectivity) and cannot continue until connectivity is restored. If you specify a function here, you are responsible for informing the user that they should retry.|
+|onClose|||(Experimental) A callback function, executed when the challenge window is closed.|
 
 ## reCAPTCHA v2 docs
 

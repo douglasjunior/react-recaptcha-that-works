@@ -4,6 +4,7 @@
         "airbnb"
     ],
     "globals": {
+        "MutationObserver": false,
         "document": false,
         "window": false
     },
