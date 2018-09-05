@@ -120,11 +120,11 @@ class App extends Component {
 |siteKey|||Your sitekey.|
 |size|`'invisible'`, `'normal'` or `'compact'`|`'normal'`|The size of the widget.|
 |theme|`'dark'` or `'light'`|`'light'`|The color theme of the widget.|
-|onLoad|||A callback function, executed when the reCAPTCHA is ready to use.|
-|onVerify|||A callback function, executed when the user submits a successful response. The recaptcha response token is passed to your callback.|
-|onExpire|||A callback function, executed when the reCAPTCHA response expires and the user needs to re-verify.|
-|onError|||A callback function, executed when reCAPTCHA encounters an error (usually network connectivity) and cannot continue until connectivity is restored. If you specify a function here, you are responsible for informing the user that they should retry.|
-|onClose|||(Experimental) A callback function, executed when the challenge window is closed.|
+|onLoad|`function()`||A callback function, executed when the reCAPTCHA is ready to use.|
+|onVerify|`function(token)`||A callback function, executed when the user submits a successful response. The recaptcha response token is passed to your callback.|
+|onExpire|`function()`||A callback function, executed when the reCAPTCHA response expires and the user needs to re-verify.|
+|onError|`function(error)`||A callback function, executed when reCAPTCHA encounters an error (usually network connectivity) and cannot continue until connectivity is restored. If you specify a function here, you are responsible for informing the user that they should retry.|
+|onClose|`function()`||(Experimental) A callback function, executed when the challenge window is closed.|
 
 ## reCAPTCHA v2 docs
 
