@@ -1,6 +1,6 @@
 {
   "name": "react-recaptcha-that-works",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "⚛ A reCAPTCHA bridge for React that works.",
   "main": "build/index.js",
   "scripts": {
