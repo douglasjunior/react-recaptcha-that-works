@@ -6,6 +6,8 @@
 
 A reCAPTCHA library for React that works.
 
+_Looking for [React Native version](https://github.com/douglasjunior/react-native-recaptcha-that-works)?_
+
 ## Install 
 
 ### Install the module 
