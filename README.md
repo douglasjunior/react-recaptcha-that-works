@@ -175,14 +175,12 @@ For more details, see the [Sample Project](https://github.com/douglasjunior/reac
 |onError|`function()`||A callback function, executed when reCAPTCHA encounters an error (usually network connectivity) and cannot continue until connectivity is restored. If you specify a function here, you are responsible for informing the user that they should retry.|
 |onClose|`function()`||(Experimental) A callback function, executed when the challenge window is closed.|
 
-## Methods
+## React Ref Methods
 
 |Name|Type|Description|
 |-|-|-|
 |execute|`function`|Executes the challenge in "invisible" mode.|
 |reset|`function`|Resets the reCAPTCHA state.|
-
-Note: If using `size="invisible"`, then challenge run automatically when `open` is called.
 
 ## reCAPTCHA v2 docs
 
