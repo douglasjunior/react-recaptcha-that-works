@@ -33,7 +33,7 @@ Or
 </html>
 ```
 
-## Use
+## Usage
 
 ### I'm not a robot
 
@@ -115,6 +115,53 @@ class App extends Component {
 }
 ```
 
+### TypeScript
+
+```tsx
+import React, { useRef } from 'react';
+import { View, Button } from 'react-native';
+
+import Recaptcha, { RecaptchaRef } from "react-recaptcha-that-works";
+
+// ...
+
+export const Component: React.FC = () => {
+    const recaptcha = useRef<RecaptchaRef>(null);
+
+    const send = () => {
+        console.log('send!');
+        recaptcha.current?.execute();
+    };
+
+    const onVerify = (token: string) => {
+        console.log('success!', token);
+    };
+
+    const onExpire = () => {
+        console.warn('expired!');
+    }
+
+    return (
+        <div>
+            <Recaptcha
+                ref={recaptcha}
+                siteKey="<your-recaptcha-public-key>"
+                onVerify={onVerify}
+                onExpire={onExpire}
+                size="invisible"
+            />
+            <button onClick={send}>
+                Send
+            </button>
+        </div>
+    );
+};
+```
+
+<br />
+
+For more details, see the [Sample Project](https://github.com/douglasjunior/react-recaptcha-that-works/blob/master/src/App.tsx).
+
 ## Props
 
 |Name|Value|Default|Description|
@@ -125,8 +172,17 @@ class App extends Component {
 |onLoad|`function()`||A callback function, executed when the reCAPTCHA is ready to use.|
 |onVerify|`function(token)`||A callback function, executed when the user submits a successful response. The reCAPTCHA response token is passed to your callback.|
 |onExpire|`function()`||A callback function, executed when the reCAPTCHA response expires and the user needs to re-verify.|
-|onError|`function(error)`||A callback function, executed when reCAPTCHA encounters an error (usually network connectivity) and cannot continue until connectivity is restored. If you specify a function here, you are responsible for informing the user that they should retry.|
+|onError|`function()`||A callback function, executed when reCAPTCHA encounters an error (usually network connectivity) and cannot continue until connectivity is restored. If you specify a function here, you are responsible for informing the user that they should retry.|
 |onClose|`function()`||(Experimental) A callback function, executed when the challenge window is closed.|
+
+## Methods
+
+|Name|Type|Description|
+|-|-|-|
+|execute|`function`|Executes the challenge in "invisible" mode.|
+|reset|`function`|Resets the reCAPTCHA state.|
+
+Note: If using `size="invisible"`, then challenge run automatically when `open` is called.
 
 ## reCAPTCHA v2 docs
 
