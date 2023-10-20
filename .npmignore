@@ -1,3 +1,10 @@
-.babelrc
-.eslintrc
-.eslintignore
+.vscode
+.github
+.eslintrc.cjs
+index.html
+tsconfig.*
+vite.config.ts
+yarn.lock
+node_modules/
+src/
+scripts/
