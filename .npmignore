@@ -1,6 +1,7 @@
 .vscode
 .github
 .eslintrc.cjs
+.gitattributes
 index.html
 tsconfig.*
 vite.config.ts
