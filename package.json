@@ -23,7 +23,6 @@
     "url": "https://github.com/douglasjunior/react-recaptcha-that-works/issues"
   },
   "homepage": "https://github.com/douglasjunior/react-recaptcha-that-works",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -p ./tsconfig.lib.json",
