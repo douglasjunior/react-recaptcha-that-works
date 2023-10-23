@@ -119,7 +119,6 @@ class App extends Component {
 
 ```tsx
 import React, { useRef } from 'react';
-import { View, Button } from 'react-native';
 
 import Recaptcha, { RecaptchaRef } from "react-recaptcha-that-works";
 
