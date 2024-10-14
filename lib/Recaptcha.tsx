@@ -108,7 +108,7 @@ const Recaptcha = forwardRef(({
 
     const iframes = document.getElementsByTagName('iframe');
     const recaptchaFrame = Array.prototype.find
-      .call(iframes, e => e.src.includes('google.com/recaptcha/api2/bframe'));
+      .call(iframes, e => e.src.includes('google.com/recaptcha/api2'));
     const recaptchaElement = recaptchaFrame.parentNode.parentNode;
 
     let lastOpacity = recaptchaElement.style.opacity;
