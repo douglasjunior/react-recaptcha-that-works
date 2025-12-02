@@ -1,7 +1,7 @@
 {
   "name": "react-recaptcha-that-works",
   "description": "⚛ A reCAPTCHA bridge for React that works.",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "lib/index.ts",
   "repository": {
     "type": "git",

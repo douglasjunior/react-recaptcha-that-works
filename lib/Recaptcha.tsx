@@ -76,20 +76,13 @@ const Recaptcha = forwardRef(({
   };
 
   useEffect(() => {
-    if (ready) {
+    if (ready && !isRendered()) {
       renderRecaptcha();
       return;
     }
 
     readyIntervalRef.current = setInterval(updateReadyState, 1000);
     return () => clearInterval(readyIntervalRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready]);
-
-  useEffect(() => {
-    if (ready && !isRendered()) {
-      renderRecaptcha();
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
 
