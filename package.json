@@ -2,7 +2,26 @@
   "name": "react-recaptcha-that-works",
   "description": "⚛ A reCAPTCHA bridge for React that works.",
   "version": "2.0.2",
-  "main": "lib/index.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/douglasjunior/react-recaptcha-that-works.git"
@@ -29,8 +48,13 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p ./tsconfig.lib.json",
-    "publish-script": "node scripts/publish.js"
+    "build": "node scripts/clean.js && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && node scripts/write-module-types.js",
+    "check-package": "node scripts/check-package.js",
+    "test": "yarn build && yarn check-package",
+    "prepack": "yarn build"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
   },
   "devDependencies": {
     "react": "^18.2.0",
