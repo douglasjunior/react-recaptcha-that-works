@@ -1,0 +1,80 @@
+# Publishes the package to npm whenever a GitHub release is published.
+#
+# The version comes from the release tag (`1.2.3` or `v1.2.3`), is written to
+# package.json before `npm publish`, and then committed back
+# to the default branch so the repository matches what is on npm.
+#
+# Authentication uses npm Trusted Publishing (OIDC), so no token is stored in
+# GitHub. One-time setup on npmjs.com → package → Settings → Trusted Publisher:
+#   Provider: GitHub Actions · Repository: douglasjunior/react-recaptcha-that-works
+#   Workflow filename: publish.yml · Environment: (leave empty)
+#
+# A release marked as "pre-release" is published under the `next` dist-tag
+# instead of `latest`.
+
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write # commit the version back to the default branch
+  id-token: write # npm Trusted Publishing and provenance
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish ${{ github.event.release.tag_name }} to npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+          registry-url: https://registry.npmjs.org
+
+      - name: Read the version from the release tag
+        id: version
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          version="${TAG#v}"
+          if ! node -e 'process.exit(/^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$/.test(process.argv[1]) ? 0 : 1)' "$version"; then
+            echo "::error::Release tag '$TAG' is not a semver version (expected e.g. 1.2.3 or v1.2.3)."
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - run: yarn install --frozen-lockfile
+
+      - name: Set the version in package.json
+        run: npm version "${{ steps.version.outputs.version }}" --no-git-tag-version --allow-same-version
+
+      - name: Publish to npm
+        # `prepack` builds dist/ (ESM and CommonJS) before packing.
+        run: npm publish --tag "${{ github.event.release.prerelease && 'next' || 'latest' }}"
+
+      - name: Commit the version to ${{ github.event.repository.default_branch }}
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -- package.json
+          git fetch origin "$BRANCH"
+          git checkout -B "$BRANCH" "origin/$BRANCH"
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
+          git add package.json
+          if git diff --cached --quiet; then
+            echo "package.json on $BRANCH is already at $VERSION."
+          else
+            git commit -m "chore(release): $VERSION [skip ci]"
+            git push origin "$BRANCH"
+          fi
