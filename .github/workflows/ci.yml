@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  check:
+    name: Build and package check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+
+      # Builds the ESM and CommonJS outputs and resolves the package through both entry points.
+      - run: yarn test
